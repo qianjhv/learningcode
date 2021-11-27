@@ -1,0 +1,16 @@
+#include <stdio.h>
+
+int main(void) {
+
+
+    char ch;
+    unsigned int size = 0L;
+
+    while ((ch = getchar()) != EOF) {
+        size++;
+    }
+
+    printf("%u\n", size);
+
+    return 0;
+}
