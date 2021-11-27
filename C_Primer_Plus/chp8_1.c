@@ -2,9 +2,8 @@
 
 int main(void) {
 
-
     char ch;
-    unsigned int size = 0L;
+    unsigned int size = 0;
 
     while ((ch = getchar()) != EOF) {
         size++;
