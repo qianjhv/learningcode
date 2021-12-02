@@ -40,3 +40,16 @@ int gcd(int a, int b) {
 
     return a % b == 0 ? b : gcd(b, a % b);
 }
+
+// 返回斐波那契数列的第 N 项
+int fibonacci(int N) {
+
+    int a = 1, b = 0, fib;
+    for (int i=0; i<N; i++) {
+        fib = a + b;
+        a = b;
+        b = fib;
+    }
+
+    return fib;
+}
