@@ -3,13 +3,15 @@
 void copy_arr(double [], double [], int);
 void copy_ptr(const double [], double *, int);
 
+int max_in_arr(const int *arr_start, int *arr_end);
+
 int main(void) {
 
     double source[5] = {1.1, 2.2, 3.3, 4.4, 5.5};
     double target1[5];
     double target2[5];
 
-    printf("-------------------- chapter 10-2 test code below---------");
+    printf("-------------------- chapter 10-2 test code below---------\n\n");
 
     copy_arr(source, target1, 5);
     for (int i=0; i<sizeof(target1)/sizeof(target1[0]); i++) {
@@ -23,9 +25,10 @@ int main(void) {
         printf("%.1f\t", *(target2 + i));
     }
 
-    printf("\n");
+    printf("\n\n\n-------------------- chapter 10-3 test code below---------\n\n");
 
-    printf("-------------------- chapter 10-3 test code below---------");
+    int arr[] = {1, 2, 3, -1, 5, 9, 11, 20, 13};
+    printf("The largest number in arr is %d.\n", max_in_arr(arr, arr + sizeof(arr)/sizeof(arr[0])));
 
 
     return 0;
@@ -44,5 +47,19 @@ void copy_ptr(const double source[], double *target, int N) {
     for (int i=0; i<N; i++) {
         *target++ = *(source + i);
     }
+
+}
+
+int max_in_arr(const int *arr_start, int *arr_end) {
+
+    int max = *arr_start;
+    while (arr_start < arr_end) {
+        if (max < *arr_start) {
+            max = *arr_start;
+        }
+        arr_start++;
+    }
+
+    return max;
 
 }
