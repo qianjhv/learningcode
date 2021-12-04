@@ -7,6 +7,8 @@ int max_in_arr(const int *arr_start, int *arr_end);
 
 int max_index(const int*, int N);
 
+int max_minus_min(const int *arr_start, int *arr_end);
+
 int main(void) {
 
     double source[5] = {1.1, 2.2, 3.3, 4.4, 5.5};
@@ -34,6 +36,9 @@ int main(void) {
 
     printf("\n\n\n-------------------- chapter 10-4 test code below---------\n\n");
     printf("The largest number in arr is %dth.\n", max_index(arr, sizeof(arr)/sizeof(arr[0])));
+
+    printf("\n\n\n-------------------- chapter 10-5 test code below---------\n\n");
+    printf("Max - Min = %d.\n", max_minus_min(arr, arr + sizeof(arr)/sizeof(arr[0])));
 
     return 0;
 }
@@ -78,5 +83,22 @@ int max_index(const int *arr, int N) {
     }
 
     return max + 1;
+
+}
+
+int max_minus_min(const int *arr_start, int *arr_end) {
+
+    int max = *arr_start, min = *arr_start;
+    while (arr_start < arr_end) {
+        if (max < *arr_start) {
+            max = *arr_start;
+        }
+        if (min >  *arr_start) {
+            min = *arr_start;
+        }
+        arr_start++;
+    }
+
+    return max - min;
 
 }
