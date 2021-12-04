@@ -5,6 +5,8 @@ void copy_ptr(const double [], double *, int);
 
 int max_in_arr(const int *arr_start, int *arr_end);
 
+int max_index(const int*, int N);
+
 int main(void) {
 
     double source[5] = {1.1, 2.2, 3.3, 4.4, 5.5};
@@ -30,6 +32,8 @@ int main(void) {
     int arr[] = {1, 2, 3, -1, 5, 9, 11, 20, 13};
     printf("The largest number in arr is %d.\n", max_in_arr(arr, arr + sizeof(arr)/sizeof(arr[0])));
 
+    printf("\n\n\n-------------------- chapter 10-4 test code below---------\n\n");
+    printf("The largest number in arr is %dth.\n", max_index(arr, sizeof(arr)/sizeof(arr[0])));
 
     return 0;
 }
@@ -61,5 +65,18 @@ int max_in_arr(const int *arr_start, int *arr_end) {
     }
 
     return max;
+
+}
+
+int max_index(const int *arr, int N) {
+    
+    int max = *arr;
+    for (int i=1; i<N; i++) {
+        if (max < arr[i]) {
+            max = i;
+        }
+    }
+
+    return max + 1;
 
 }
