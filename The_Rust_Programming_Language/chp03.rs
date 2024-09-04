@@ -13,7 +13,7 @@ fn fahrenheit_to_celsius(fah: f32) -> f32 {
 //[1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...]
 // zero is not the first term, but the zeroth term - f(0) 
 fn fibonacci(n: u8) -> u64 {
-	 let mut a: u64 = 0;
+	let mut a: u64 = 0;
     let mut b: u64 = 1;
 
     for _ in 0..n {
