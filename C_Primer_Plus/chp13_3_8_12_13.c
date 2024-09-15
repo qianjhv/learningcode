@@ -8,9 +8,86 @@ void copy_toupper(void);    // 13-3
 int main(int argc, char *argv[]) {
 	// copy_toupper();
 
+    /* 13-13 */
+    FILE *f;
+    char str[] = {' ', '.', '!', '^', '%', '*', '&', '$', '@', '#'};
+    const char *source = "20x30.txt";
+    const int SIZE = 61;
+    char buffer[SIZE];
+
+    const int ROW = 20, COL = 30;
+    int arr[ROW][COL];
+    f = fopen(source, "r");
+    if (f == NULL) {
+        fprintf(stderr, "Error, can't open %s!\n", source); 
+        exit(1);
+    }
+
+    int j = 0;
+    while (fgets(buffer, sizeof(buffer), f)) {
+        for (int i = 0; i < sizeof(buffer) - 1; i++) {
+            if ((i & 1) == 0) {
+                arr[j][i] = buffer[i] - '0';
+                printf("%d ", arr[j][i]);
+            }
+        }
+        j++;
+        putchar('\n');
+    }
+    fclose(f);
+
+    /*
+    for (int i = 0; i < ROW; i++) {
+        for (int j = 0; j < COL; j++) {
+            printf("%d", arr[i][j]);
+        }
+        putchar('\n');
+    }
+    */
+    
+    
+    int inner_compare(int arr[ROW][COL], int row, int col) {
+        
+        int tmp = arr[row][col];
+        int top = arr[row - 1][col], bottom = arr[row + 1][col], left = arr[row][col - 1], right = arr[row][col + 1];
+        if (abs(tmp - top) > 1 && abs(tmp - bottom) > 1 && abs(tmp - left) > 1 && abs(tmp - right) > 1) {
+            return (top + bottom + left + right) / 4;
+        }
+        return tmp;
+    }
+
+    int **compare_all(int arr[ROW][COL], int row, int col) {
+        int** res = malloc(row * sizeof(int*));
+
+        for (int i = 0; i < row; i++) {
+            res[i] = malloc(col * sizeof(int));
+            for (int j = 0; j < col; j++) {
+                int tmp = arr[i][j];
+                if (i == 0 && j == 0) res[i][j] = (abs(tmp - arr[i][j+1]) > 1 &&  abs(tmp - arr[i + 1][j]) > 1) ? (arr[i][j+1] + arr[i+1][j]) / 2 : tmp;
+                else if (i == 0 && j == col - 1) res[i][j] = (abs(tmp - arr[i][j-1]) > 1 &&  abs(tmp - arr[i + 1][j]) > 1) ? (arr[i][j-1] + arr[i+1][j]) / 2 : tmp;
+                else if (i == row - 1 && j == 0) res[i][j] = (abs(tmp - arr[i-1][j]) > 1 &&  abs(tmp - arr[i][j+1]) > 1) ? (arr[i-1][j] + arr[i][j+1]) / 2 : tmp;
+                else if (i == row-1 && j == col-1) res[i][j] = (abs(tmp - arr[i-1][j]) > 1 &&  abs(tmp - arr[i][j-1]) > 1) ? (arr[i-1][j] + arr[i][j-1]) / 2 : tmp;
+                else res[i][j] = inner_compare(arr, row, col);
+            }
+        }
+        return res;
+    }
+
+    int **fi = compare_all(arr, 20, 30);
+
+/*
+    for (int i = 0; i < ROW; i++) {
+        for (int j = 0; j < COL; j++) {
+            printf("%d", fi[i][j]);
+        }
+        putchar('\n');
+    }
+ */   
+    free(fi);
 
 	return 0;
 }
+
 
 /* 13-3 */
 void copy_toupper(void) {
@@ -126,4 +203,5 @@ while (fgets(buffer, sizeof(buffer), f)) {
     }
     putchar('\n');
 }
+fclose(f);
 */
