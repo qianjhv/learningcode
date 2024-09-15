@@ -8,7 +8,7 @@ void copy_toupper(void);    // 13-3
 int main(int argc, char *argv[]) {
 	// copy_toupper();
 
-	
+
 	return 0;
 }
 
@@ -19,7 +19,6 @@ void copy_toupper(void) {
 	char source[SLEN], dst[SLEN];
 	FILE *fo, *fi;
 		
-
 	puts("Enter name of source: ");
 	fgets(source, sizeof(source), stdin);
 	source[strcspn(source, "\n")] = '\0';
@@ -36,7 +35,6 @@ void copy_toupper(void) {
 
 	fclose(fo);
 	fclose(fi);
-
 }
 
 
@@ -84,7 +82,7 @@ if (argc < 2) {
         counts = 0;
         f = fopen(argv[i], "r");
         if (f == NULL) {
-            fprintf(stderr, "Error, can't open %s!\n", argv[2]); 
+            fprintf(stderr, "Error, can't open %s!\n", argv[i]); 
             continue;
         }
         for (int j = 0; j < strlen(argv[i]); j++) {
@@ -104,3 +102,28 @@ if (argc < 2) {
 **/
 
 
+/* 13-12 */
+// :for i in range(20) | call setline(i + 1, join(map(range(30), {j->string(rand() % 10)}), ' ')) | endfor
+/* 
+FILE *f;
+char str[] = {' ', '.', '!', '^', '%', '*', '&', '$', '@', '#'};
+const char *source = "20x30.txt";
+const int SIZE = 61;
+char buffer[SIZE];
+
+f = fopen(source, "r");
+if (f == NULL) {
+    fprintf(stderr, "Error, can't open %s!\n", source); 
+    exit(1);
+}
+
+while (fgets(buffer, sizeof(buffer), f)) {
+    for (int i = 0; i < sizeof(buffer) - 1; i++) {
+        if ((i & 1) == 0) {
+            int t = buffer[i] - '0';
+            printf("%c", str[t]);
+        }
+    }
+    putchar('\n');
+}
+*/
