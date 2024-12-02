@@ -1,9 +1,7 @@
 fn main() {
-    let x = add(5, 6);
-    println!("{}", x);
-}
+    let s1 = String::from("hello");
+    let s2 = s1;
 
-fn add(x: i32, y: i32) -> i32 {
-    
-    return x + y
+    println!("{s2}, world!");
+
 }
