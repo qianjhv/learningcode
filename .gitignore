@@ -3,3 +3,7 @@
 
 *.exe
 *.out
+
+.venv/
+venv/
+env/

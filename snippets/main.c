@@ -2,6 +2,8 @@
 
 int main(void) {
 
-	printf("\a"); // 输出响铃字符
+    char *p = "hello";
+    *p = "halo";
+	printf("%s", *p); // 输出响铃字符
     return 0;
 }
