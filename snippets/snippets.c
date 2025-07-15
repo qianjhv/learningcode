@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <string.h>
 #include <stdbool.h>
 
 // 判断一个数是否为素数
@@ -53,3 +55,29 @@ int fibonacci(int N) {
 
     return fib;
 }
+
+// 从标准输入获取一个长度为 n-1 的字符串
+char *s_gets(char *st, int n) {
+    char *find, *ret_val = fgets(st, n, stdin);
+    
+    if (ret_val) {
+        find = strchr(st, '\n');
+        if (find) 
+            *find = '\0';
+        else
+            while (getchar() != '\n') 
+                continue;
+    }
+    
+    return ret_val;
+}
+
+int main(void) {
+
+    printf("%s\n", __FILE__);
+    char str[5];
+    s_gets(str, 5);
+
+    return 0;
+}
+
