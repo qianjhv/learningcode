@@ -2,6 +2,9 @@
 #include <string.h>
 #include <stdbool.h>
 
+#define ISDIGIT(ch) ((ch) >= '0' && (ch) <= '9')
+#define ISDIGIT1TO9(ch) ((ch) >= '1' && (ch) <= '9')
+
 // 判断一个数是否为素数
 bool prime(int N) {
     if (N <= 3) {
@@ -44,8 +47,9 @@ int gcd(int a, int b) {
 }
 
 // 返回斐波那契数列的第 N 项
+// 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, ...
 int fibonacci(int N) {
-
+    if (N <= 1) return N;
     int a = 1, b = 0, fib;
     for (int i=0; i<N; i++) {
         fib = a + b;
@@ -71,6 +75,15 @@ char *s_gets(char *st, int n) {
     
     return ret_val;
 }
+
+int collatz(int n) {
+    int ret_val = 0;
+    while (n != 1) {
+        n = (n ^ 1) ? (3 * n + 1) : (n >> 1);
+        ret_val++;
+    }
+    return ret_val;
+} 
 
 int main(void) {
 
